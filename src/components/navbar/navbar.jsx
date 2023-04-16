@@ -11,8 +11,8 @@ import NavbarUserActions from "./navbarUserActions";
 
 const Navbar = () => {
   return (
-    <Box sx={{ position: "fixed", width: "100%", zIndex: "1000" }}>
-      <Overflow>
+    <Box sx={{ position: "absolute", width: "100%", zIndex: "1000" }}>
+      <Overflow bg="transparent">
         <Flex
           sx={{
             alignItems: "center",
@@ -22,9 +22,9 @@ const Navbar = () => {
           p={"2rem 0"}
         >
           <Logo />
-          <NavbarMenuList />
-          <SearchBar w="300px" />
-          <NavbarUserActions />
+          <NavbarMenuList color={"rgba(255,255,255,0.7)"} />
+          <SearchBar w="300px" color={"rgba(255,255,255,0.7)"} />
+          <NavbarUserActions color={"rgba(255,255,255,0.7)"} />
         </Flex>
       </Overflow>
     </Box>

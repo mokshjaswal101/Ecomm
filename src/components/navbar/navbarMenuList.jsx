@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 //data
 import MenuItemsData from "./menuItemsData";
 
-const NavbarMenuList = () => {
+const NavbarMenuList = ({ color }) => {
   return (
     <Flex
       sx={{
@@ -20,9 +20,11 @@ const NavbarMenuList = () => {
               textDecoration: "none",
               padding: "0 .5rem",
               hover: { display: "none" },
+              fontWeight: 500,
+              color,
             }}
           >
-            {el.label}
+            {el.label.toUpperCase()}
           </NavLink>
         );
       })}

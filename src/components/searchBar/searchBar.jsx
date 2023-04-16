@@ -17,6 +17,7 @@ const SearchBar = (props) => {
           input: {
             padding: "1.75rem 2.5rem 1.75rem 1rem",
             fontSize: "1.6rem",
+            background: props.color,
           },
           rightSection: { paddingRight: "1rem" },
         }}

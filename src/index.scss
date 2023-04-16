@@ -1,7 +1,7 @@
 :root,
 html,
 body {
-  font-family: Inter, roboto, sans-serif;
+  font-family: Oswald, Inter, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -34,4 +34,11 @@ button:active,
 button:focus,
 input:focus {
   outline: none;
+}
+
+// defaults
+input,
+input:focus,
+input:active {
+  border: none;
 }

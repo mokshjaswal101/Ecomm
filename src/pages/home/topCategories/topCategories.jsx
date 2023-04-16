@@ -15,7 +15,7 @@ const TopCategories = () => {
   return (
     <Overflow>
       <Section>
-        <Title variant="secondaryHeading">Our Top Categories</Title>
+        <Title variant="sectionHeading">Our Top Categories</Title>
 
         <SimpleGrid spacing={"2rem"} cols={4} w={"100%"}>
           {categories.map((category, index) => {

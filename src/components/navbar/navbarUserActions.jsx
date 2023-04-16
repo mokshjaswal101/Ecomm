@@ -4,16 +4,16 @@ import { Box, Flex } from "@mantine/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faUser } from "@fortawesome/free-solid-svg-icons";
 
-const NavbarUserActions = () => {
+const NavbarUserActions = ({ color }) => {
   return (
-    <Flex gap={"2rem"} sx={{ fontWeight: "500" }}>
+    <Flex gap={"2rem"} sx={{ fontWeight: "500", color: color }}>
       <Flex gap={"1rem"} sx={{ alignItems: "center" }}>
         <FontAwesomeIcon icon={faUser} />
-        Account
+        ACCOUNT
       </Flex>
       <Flex gap={"1rem"} sx={{ alignItems: "center" }}>
         <FontAwesomeIcon icon={faCartShopping} />
-        Cart
+        CART
       </Flex>
     </Flex>
   );

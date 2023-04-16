@@ -14,7 +14,7 @@ const TopDeals = () => {
   return (
     <Overflow>
       <Section>
-        <Title variant="secondaryHeading">Top Deals For You</Title>
+        <Title variant="sectionHeading">Top Deals For You</Title>
         <SimpleGrid cols={4} spacing={"2rem"} p={"0 0 5rem 0"}>
           {Data.map((product, index) => {
             return <ProductCard product={product} key={index} />;

@@ -1,5 +1,5 @@
-import { Button, Flex, Title } from "@mantine/core";
-import { Carousel } from "@mantine/carousel";
+import { useState, useEffect } from "react";
+import { Button, Flex } from "@mantine/core";
 
 //layout
 import Overflow from "../../../components/Layout/overflow";
@@ -9,45 +9,69 @@ import TitleSliderElement from "./titleSliderElement";
 
 //icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { faLeftLong, faRightLong } from "@fortawesome/free-solid-svg-icons";
+
+//data
+import TitleSliderData from "./titleSliderData";
+
+const TitleSlideButton = ({ children, ...rest }) => {
+  return (
+    <Button
+      bg={"transparent"}
+      radius={"50%"}
+      h={"auto"}
+      p={"6rem"}
+      sx={{ border: "1px solid rgba(255,255,255,0.4)", "&:hover": {} }}
+      color="white"
+      styles={{ root: { "&:hover": { background: "transparent" } } }}
+      {...rest}
+    >
+      {children}
+    </Button>
+  );
+};
 
 const TitleSlider = () => {
+  const [slideIndex, setSlideIndex] = useState(0);
+
   return (
-    <Overflow bg="linear-gradient(to right top, #120814, #A759E9)">
+    <Overflow bg={TitleSliderData[slideIndex]?.background}>
       <Flex
         h={"100vh"}
         sx={{
-          flex: "1",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: "center",
           color: "white",
+          overflow: "hidden",
         }}
       >
-        {/* Left Button */}
-        <Carousel w="100%" loop slideSize={"100%"} slideGap={"md"}>
-          <Carousel.Slide>
-            <Title
-              sx={{
-                textAlign: "center",
-                fontSize: "10rem",
-                letterSpacing: "1rem",
-              }}
-            >
-              GROCERIES
-            </Title>
-          </Carousel.Slide>
-          <Carousel.Slide>
-            <Title
-              sx={{
-                textAlign: "center",
-                fontSize: "10rem",
-                letterSpacing: "1rem",
-              }}
-            >
-              GROCERIES
-            </Title>
-          </Carousel.Slide>
-        </Carousel>
+        <Flex
+          w={"110%"}
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
+        >
+          {/* Previous Button */}
+          <TitleSlideButton
+            onClick={() => {
+              setSlideIndex(
+                (slideIndex - 1 + TitleSliderData.length) %
+                  TitleSliderData.length
+              );
+            }}
+          >
+            <FontAwesomeIcon icon={faLeftLong} />
+          </TitleSlideButton>
+
+          <TitleSliderElement slide={TitleSliderData[slideIndex]} />
+
+          {/* Next Button */}
+          <TitleSlideButton
+            onClick={() => {
+              setSlideIndex((slideIndex + 1) % TitleSliderData.length);
+            }}
+          >
+            <FontAwesomeIcon icon={faRightLong} />
+          </TitleSlideButton>
+        </Flex>
       </Flex>
     </Overflow>
   );
