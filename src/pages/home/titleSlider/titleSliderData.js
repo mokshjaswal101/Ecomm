@@ -1,7 +1,7 @@
 const TitleSliderData = [
   {
     label: "Travel",
-    background: "linear-gradient(to right top, #120814, #A759E9)",
+    background: "yellow",
   },
   {
     label: "Groceries",

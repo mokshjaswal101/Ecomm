@@ -57,7 +57,11 @@ const TitleSlider = () => {
         >
           <Flex
             w={"110%"}
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
+            sx={{
+              justifyContent: "space-between",
+              alignItems: "center",
+              zIndex: "100",
+            }}
           >
             {/* Previous Button */}
             <TitleSlideButton
