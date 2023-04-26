@@ -1,7 +1,7 @@
 import { MantineProvider } from "@mantine/core";
 
 //Router
-import Router from "./Router";
+import Router from "./router";
 
 //theme
 import theme from "./theme/theme";
