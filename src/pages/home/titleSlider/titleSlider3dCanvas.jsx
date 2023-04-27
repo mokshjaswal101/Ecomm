@@ -4,7 +4,6 @@ import { Flex } from "@mantine/core";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   OrbitControls,
-  Preload,
   SoftShadows,
   useGLTF,
   Environment,
@@ -17,14 +16,30 @@ var ObjectBuilder = (props) => {
   });
 
   const ref = useRef();
+  const isHovered = useRef();
+  let scale;
 
   if (props?.randomMovement) {
-    useFrame(
-      (state, delta) => (ref.current.rotation.x += (delta * Math.random()) / 2)
-    );
-    useFrame(
-      (state, delta) => (ref.current.rotation.y += (delta * Math.random()) / 2)
-    );
+    const frequency = Math.random() * 2 + 0.5;
+    const phaseOffset = Math.random() * 2 * Math.PI;
+
+    useFrame(({ clock }) => {
+      // Calculate the rotation angle based on time and the frequency and phase offset
+
+      // if (isHovered.current) {
+      //   // const angle = clock.getElapsedTime() * Math.PI * 2 * 2;
+      //   // ref.current.rotation.y += angle;
+      //   scale = props.scale + 0.5;
+      // } else scale = props.scale;
+
+      const angle =
+        Math.sin(clock.getElapsedTime() * frequency + phaseOffset) *
+        props.amplitude;
+
+      // Apply the rotation to the mesh
+      ref.current.rotation.x = angle;
+      ref.current.rotation.y = angle;
+    });
   }
 
   const primitiveProps = {
@@ -34,7 +49,13 @@ var ObjectBuilder = (props) => {
     color: props.color,
   };
   return (
-    <mesh ref={ref} castShadow {...primitiveProps}>
+    <mesh
+      ref={ref}
+      castShadow
+      {...primitiveProps}
+      onPointerOver={() => (isHovered.current = true)}
+      onPointerOut={() => (isHovered.current = false)}
+    >
       <primitive object={object.scene} />
     </mesh>
   );
@@ -69,37 +90,41 @@ const TitleSlider3dCanvas = () => {
         {/* Objects */}
         <ObjectBuilder
           url={"./models/phone/scene.gltf"}
-          position={[-3.7, 1.2, 0]}
-          rotation={[0, -Math.PI, 0]}
-          scale={1.1}
-          randomMovement={true}
-        />
-        <ObjectBuilder
-          url={"./models/backpack/scene.gltf"}
-          position={[5, 1, 0]}
-          rotation={[0, -Math.PI, 0]}
-          scale={0.06}
-          randomMovement={true}
-        />
-        <ObjectBuilder
-          url={"./models/thermos/scene.gltf"}
-          position={[5, -3, 0]}
-          rotation={[0, -Math.PI, 0]}
-          scale={0.0015}
-          randomMovement={true}
-        />
-        <ObjectBuilder
-          url={"./models/suitcase/scene.gltf"}
-          position={[-4, -3, 0]}
+          position={[-6, 1.2, -3]}
           rotation={[0, -Math.PI, 0]}
           scale={1.4}
           randomMovement={true}
+          amplitude={0.3}
+        />
+        <ObjectBuilder
+          url={"./models/backpack/scene.gltf"}
+          position={[6, 1, -3]}
+          rotation={[0, -Math.PI, 0]}
+          scale={0.09}
+          randomMovement={true}
+          amplitude={0.1}
+        />
+        <ObjectBuilder
+          url={"./models/thermos/scene.gltf"}
+          position={[5, -3, -1.5]}
+          rotation={[0, -Math.PI, 0]}
+          scale={0.0025}
+          randomMovement={true}
+          amplitude={0.2}
+        />
+        <ObjectBuilder
+          url={"./models/suitcase/scene.gltf"}
+          position={[-4, -3, -1.5]}
+          rotation={[0, -Math.PI, 0]}
+          scale={1.8}
+          randomMovement={true}
+          amplitude={0.15}
         />
         <ObjectBuilder
           url={"./Headings/Ecomm.glb"}
-          position={[-2.5, -0.5, 0]}
+          position={[-3.25, -0.5, 0]}
           rotation={[Math.PI / 2, 0, 0]}
-          scale={1.5}
+          scale={2}
           randomMovement={false}
         />
         <mesh

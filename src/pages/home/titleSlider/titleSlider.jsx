@@ -60,7 +60,7 @@ const TitleSlider = () => {
             sx={{
               justifyContent: "space-between",
               alignItems: "center",
-              zIndex: "100",
+              // zIndex: "100",
             }}
           >
             {/* Previous Button */}
